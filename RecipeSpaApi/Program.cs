@@ -125,7 +125,7 @@ app.MapPost("/category", ([FromBody] Category category) =>
     return Results.Created($"/recipes/{category}", category);
 });
 
-app.MapDelete("/category", (string category) =>
+app.MapDelete("/category/{category}", ([FromRoute(Name ="category")]string category) =>
 {
     for (int i = 0; i < categoriesList.Count; ++i)
     {
@@ -143,7 +143,7 @@ app.MapDelete("/category", (string category) =>
     return Results.NotFound();
 });
 
-app.MapPut("/category", (string oldCategory, string editedCategory) =>
+app.MapPut("/category/{oldCategory}", ([FromRoute(Name ="oldCategory")] string oldCategory, string editedCategory) =>
 {
     for (int i = 0; i < categoriesList.Count; ++i)
     {

@@ -102,7 +102,6 @@ app.MapPut("/recipes/{id}", ([FromBody] Recipe editedRecipe) =>
 {
     if (recipesList.Find(recipe => recipe.Id == editedRecipe.Id) is Recipe recipe)
     {
-
         recipesList.Remove(recipe);
         recipesList.Add(editedRecipe);
         recipesList = recipesList.OrderBy(o => o.Title).ToList();
@@ -114,6 +113,7 @@ app.MapPut("/recipes/{id}", ([FromBody] Recipe editedRecipe) =>
 
 app.MapGet("/category", () =>
 {
+    categoriesList.Sort();
     return Results.Ok(categoriesList);
 });
 
